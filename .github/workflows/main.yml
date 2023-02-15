@@ -4,7 +4,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-    
+  pull_request:
+    branches: [ main ]
 jobs:
   deploy-to-github-pages:
     # use ubuntu-latest image to run steps on
@@ -18,10 +19,13 @@ jobs:
       uses: Elskom/setup-latest-dotnet@v1.1.2
       with:
          VERSION_MAJOR: 7
+         # Install dotnet wasm buildtools workload
+    - name: Install .NET WASM Build Tools
+      run: dotnet workload install wasm-tools
         
      # publishes Blazor project to the release-folder
     - name: Publish .NET Project
-      run: dotnet publish WebUI/WebUI.csproj -c Release -o release --nologo
+      run: dotnet publish WebUI/WebUI.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
       
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
