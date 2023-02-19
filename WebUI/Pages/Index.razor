@@ -1,3 +1,4 @@
 ﻿@page "/"
+@inject IStringLocalizer<Resources.Pages.Index> Localize;
 
-<PageTitle>Index</PageTitle>
+<PageTitle>@Localize[Resources.Pages.Index.IndexDisplayName]</PageTitle>

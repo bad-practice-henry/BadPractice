@@ -1,0 +1,34 @@
+﻿@using System.Text.Json
+@typeparam TEnum where TEnum : struct, Enum;
+@inject IStringLocalizer<Resources.Constants.Constants> Localize;
+
+<select class="form-control form-control-sm" @onchange="HandleValueChanged">
+    @foreach (TEnum option in Enum.GetValues(typeof(TEnum)))
+    {
+        <option value="@option" selected="@Equals(option, SelectedValue)">@Localize[option.ToString()!]</option>
+    }
+</select>
+
+@code {
+
+    [Parameter]
+    public TEnum SelectedValue { get; set; }
+
+    [Parameter]
+    public EventCallback<TEnum> ValueChanged { get; set; }
+
+    private async Task HandleValueChanged(object value)
+    {
+        var result = JsonSerializer.Deserialize<EnumSelectListValue>(JsonSerializer.Serialize(value));
+        if (result is not {}) return;
+
+        SelectedValue = Enum.Parse<TEnum>(result.Value);
+        await ValueChanged.InvokeAsync(SelectedValue);
+    }
+
+    private class EnumSelectListValue
+    {
+        public string Value { get; set; } = default!;
+    }
+
+}

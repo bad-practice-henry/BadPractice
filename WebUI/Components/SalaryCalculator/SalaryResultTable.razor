@@ -1,0 +1,26 @@
+﻿@using WebUI.Models.SalaryCalculator
+@inject IStringLocalizer<Resources.Pages.SalaryCalculator> Localize;
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th class="text-right">@Model.Currency.ToString()</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var dataItem in Model.GetAllValues())
+    {
+        <tr>
+            <td class="fw-bolder">@Localize[dataItem.Key]</td>
+            <td class="text-right">@dataItem.Value.ToString("0.00")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@code {
+
+    [Parameter]
+    public SalaryCalculatorResultModel Model { get; set; }
+
+}
