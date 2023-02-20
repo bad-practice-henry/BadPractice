@@ -1,90 +1,36 @@
 ﻿@page "/salary-calculator"
 
 @using WebUI.Models.SalaryCalculator
-@using System.Text.Json
-@using Application.Constants
-@using Application.Interfaces
-@using ValueType = Application.Constants.ValueType
+@using Infrastructure.Interfaces
+@using MapsterMapper
 @inject IStringLocalizer<Resources.Pages.SalaryCalculator> Localize;
 @inject ISalaryCalculationService SalaryCalculationService;
+@inject IMapper Mapper;
 
 <PageTitle>@Localize[Resources.Pages.SalaryCalculator.SalaryCalculatorName]</PageTitle>
 
 <div class="border rounded p-3 mb-3">
-    <input
-        class="form-control form-control-sm"
-        type="number"
-        @bind="_inputModel.BaseValue"
-        @oninput="BaseValue_Changed"/>
-
-    <EnumSelectList TEnum="ValueType" ValueChanged="InputValueType_Changed" SelectedValue="_inputModel.ValueType"/>
-    <EnumCheckbox TEnum="Rate" ValueChanged="Rate_Changed" SelectedValue="_inputModel.Rate"/>
+    <SalaryInputModel ValueChanged="SalaryInput_Changed"/>
 </div>
-<div>
+<div class="border rounded p-3 mb-3">
     <SalaryResultTable Model="_resultModel"/>
+</div>
+<div class="border rounded p-3 mb-3">
+    <SalaryYearlyCalculations Model="_yearlyModel"/>
 </div>
 
 @code {
 
-    private readonly SalaryCalculatorInputModel _inputModel = new()
-    {
-        BaseValue = 0,
-        ValueType = ValueType.Gross,
-        Rate = Rate.Monthly
-    };
-
     private SalaryCalculatorResultModel _resultModel = new();
+    private SalaryCalculatorYearlyModel _yearlyModel = new();
 
-    private void BaseValue_Changed(ChangeEventArgs obj)
+    private void SalaryInput_Changed(SalaryCalculatorInputModel model)
     {
-        if (obj.Value is string strValue && !string.IsNullOrEmpty(strValue))
-        {
-            _inputModel.BaseValue = decimal.Parse(strValue);
-        }
-        OnChange();
-        Print();
-    }
+        var calculationResult = SalaryCalculationService.CalculateResult(model.BaseValue, model.ValueType);
+        _resultModel = Mapper.Map<SalaryCalculatorResultModel>(calculationResult);
 
-    private void InputValueType_Changed(ValueType valueType)
-    {
-        _inputModel.ValueType = valueType;
-        OnChange();
-        Print();
-    }
-
-    private void Rate_Changed(Rate rate)
-    {
-        _inputModel.Rate = rate;
-        OnChange();
-        Print();
-    }
-
-    private void OnChange()
-    {
-        var result = SalaryCalculationService
-            .CalculateResult(
-                _inputModel.BaseValue,
-                _inputModel.ValueType,
-                _inputModel.Rate
-            );
-
-        _resultModel = new SalaryCalculatorResultModel
-        {
-            WageFund = result.WageFund,
-            SocialTax = result.SocialTax,
-            UnemploymentInsuranceEmployer = result.UnemploymentInsuranceEmployer,
-            GrossSalary = result.GrossSalary,
-            PensionSecondPillar = result.PensionSecondPillar,
-            UnemploymentInsuranceEmployee = result.UnemploymentInsuranceEmployee,
-            IncomeTax = result.IncomeTax,
-            NetSalary = result.NetSalary
-        };
-    }
-
-
-    private void Print()
-    {
-        Console.WriteLine(JsonSerializer.Serialize(_inputModel));
+        var yearlyCalculationResult = SalaryCalculationService.CalculateYearly(model.BaseValue, model.ValueType, model.Rate);
+        _yearlyModel = Mapper.Map<SalaryCalculatorYearlyModel>(yearlyCalculationResult);
     }
 
 }

@@ -1,21 +1,23 @@
 ﻿@typeparam TEnum
 @inject IStringLocalizer<Resources.Constants.Constants> Localize;
 
-@foreach (TEnum value in Enum.GetValues(typeof(TEnum)))
-{
-    <label>
-        <input
-            type="checkbox"
-            checked="@Equals(value, SelectedValue)"
-            @onchange="() => HandleValueChanged(value)"/>
-        @Localize[value.ToString()!]
-    </label>
-}
+<div class="border rounded p-3 d-flex flex-column">
+    @foreach (TEnum value in Enum.GetValues(typeof(TEnum)))
+    {
+        <label>
+            <input
+                type="checkbox"
+                checked="@Equals(value, SelectedValue)"
+                @onchange="() => HandleValueChanged(value)"/>
+            @Localize[value.ToString()!]
+        </label>
+    }
+</div>
 
 @code {
 
     [Parameter]
-    public TEnum SelectedValue { get; set; }
+    public TEnum SelectedValue { get; set; } = default!;
 
     [Parameter]
     public EventCallback<TEnum> ValueChanged { get; set; }

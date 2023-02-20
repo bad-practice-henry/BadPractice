@@ -8,17 +8,20 @@
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass nav-scrollable">
     <nav class="flex-column">
-        <div class="nav-item px-3">
+        <div class="nav-item px-3" @onclick="ToggleNavMenu">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> @Localize[Resources.Shared.NavMenu.Home]
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-3" @onclick="ToggleNavMenu">
             <NavLink class="nav-link" href="salary-calculator">
                 <span class="oi oi-calculator" aria-hidden="true"></span> @Localize[Resources.Shared.NavMenu.SalaryCalculator]
             </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <LanguageSelector/>
         </div>
     </nav>
 </div>

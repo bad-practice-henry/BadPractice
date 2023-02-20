@@ -1,6 +1,6 @@
 ﻿using Application.Constants;
 
-namespace Application.DTO;
+namespace Application.SalaryCalculation;
 
 public class SalaryCalculationResult
 {
@@ -13,4 +13,5 @@ public class SalaryCalculationResult
     public decimal IncomeTax { get; set; }
     public decimal NetSalary { get; set; }
     public Currency Currency { get; set; }
+    public decimal TaxFreeException { get; set; }
 }

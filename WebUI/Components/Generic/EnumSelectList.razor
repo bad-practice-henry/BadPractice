@@ -2,7 +2,7 @@
 @typeparam TEnum where TEnum : struct, Enum;
 @inject IStringLocalizer<Resources.Constants.Constants> Localize;
 
-<select class="form-control form-control-sm" @onchange="HandleValueChanged">
+<select class="form-control form-control-sm mb-2" @onchange="HandleValueChanged">
     @foreach (TEnum option in Enum.GetValues(typeof(TEnum)))
     {
         <option value="@option" selected="@Equals(option, SelectedValue)">@Localize[option.ToString()!]</option>
