@@ -13,7 +13,7 @@ jobs:
     # use ubuntu-latest image to run steps on
     runs-on: ubuntu-latest
     steps:
-     # uses GitHub's checkout action to checkout code form the master branch
+    # uses GitHub's checkout action to checkout code form the master branch
     - uses: actions/checkout@v2
      
      # sets up .NET SDK 7.0
@@ -21,17 +21,13 @@ jobs:
       uses: Elskom/setup-latest-dotnet@v1.1.2
       with:
          VERSION_MAJOR: 7
-         # Install dotnet wasm buildtools workload
+    # Install dotnet wasm buildtools workload
     - name: Install .NET WASM Build Tools
       run: dotnet workload install wasm-tools
       
-     # publishes Blazor project to the release-folder
+    # publishes Blazor project to the release-folder
     - name: Publish .NET Project
       run: dotnet publish WebUI/WebUI.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
-      
-    # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
-    - name: Change base-tag in index.html to / from BadPractice
-      run: sed -i 's/<base href="\/BadPractice\/" \/>/<base href="\/" \/>/g' dist/Web/wwwroot/index.html
       
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
