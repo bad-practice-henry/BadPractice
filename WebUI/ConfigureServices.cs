@@ -1,6 +1,10 @@
-﻿using System.Globalization;
+﻿#region
+
+using System.Globalization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.JSInterop;
+
+#endregion
 
 namespace WebUI;
 

@@ -1,4 +1,8 @@
-﻿using Application.Constants;
+﻿#region
+
+using Application.Constants;
+
+#endregion
 
 namespace Application.SalaryCalculation;
 

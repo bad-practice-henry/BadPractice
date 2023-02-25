@@ -1,5 +1,7 @@
-﻿@using WebUI.Models.SalaryCalculator
-@inject IStringLocalizer<Resources.Pages.SalaryCalculator> Localize;
+﻿@using WebUI.Resources.Pages
+@using WebUI.Models.SalaryCalculator
+@using System.Globalization
+@inject IStringLocalizer<SalaryCalculator> Localize;
 <table class="table table-striped">
     <thead>
     <tr>
@@ -12,7 +14,7 @@
     {
         <tr>
             <td class="fw-bolder">@Localize[dataItem.Key]</td>
-            <td class="text-right">@dataItem.Value.ToString("0.00")</td>
+            <td class="text-right">@dataItem.Value.ToString("0.00", CultureInfo.InvariantCulture)</td>
         </tr>
     }
     </tbody>

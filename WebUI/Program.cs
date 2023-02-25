@@ -1,8 +1,12 @@
+#region
+
 using Application;
 using Infrastructure;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using WebUI;
+
+#endregion
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 

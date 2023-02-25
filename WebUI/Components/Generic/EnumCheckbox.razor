@@ -1,5 +1,6 @@
-﻿@typeparam TEnum
-@inject IStringLocalizer<Resources.Constants.Constants> Localize;
+﻿@using WebUI.Resources.Constants
+@typeparam TEnum
+@inject IStringLocalizer<Constants> Localize;
 
 <div class="border rounded p-3 d-flex flex-column">
     @foreach (TEnum value in Enum.GetValues(typeof(TEnum)))

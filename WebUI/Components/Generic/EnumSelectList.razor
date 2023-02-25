@@ -1,6 +1,7 @@
-﻿@using System.Text.Json
+﻿@using WebUI.Resources.Constants
+@using System.Text.Json
 @typeparam TEnum where TEnum : struct, Enum;
-@inject IStringLocalizer<Resources.Constants.Constants> Localize;
+@inject IStringLocalizer<Constants> Localize;
 
 <select class="form-control form-control-sm mb-2" @onchange="HandleValueChanged">
     @foreach (TEnum option in Enum.GetValues(typeof(TEnum)))

@@ -1,4 +1,8 @@
-﻿using Application.SalaryCalculation;
+﻿#region
+
+using Application.SalaryCalculation;
+
+#endregion
 
 namespace WebUI.Models.SalaryCalculator;
 

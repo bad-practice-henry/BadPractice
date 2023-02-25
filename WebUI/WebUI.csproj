@@ -8,142 +8,142 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Mapster" Version="7.3.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all" />
-        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.3" />
-        <PackageReference Include="PublishSPAforGitHubPages.Build" Version="2.0.2" />
+        <PackageReference Include="Mapster" Version="7.3.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.3"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.3" PrivateAssets="all"/>
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.3"/>
+        <PackageReference Include="PublishSPAforGitHubPages.Build" Version="2.0.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Remove="wwwroot\sample-data\todo.json" />
-      <AdditionalFiles Include="wwwroot\sample-data\todo.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </AdditionalFiles>
+        <Content Remove="wwwroot\sample-data\todo.json"/>
+        <AdditionalFiles Include="wwwroot\sample-data\todo.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </AdditionalFiles>
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Resources\Pages\SalaryCalculator.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>SalaryCalculator.Designer.cs</LastGenOutput>
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Pages\SalaryCalculator.et.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>SalaryCalculator.et.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Shared\NavMenu.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>NavMenu.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Shared\NavMenu.et.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>NavMenu.et.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Pages\Index.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Index.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Pages\Index.et.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Index.et.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Components\Generic\EnumCheckbox.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>EnumCheckbox.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Components\Generic\EnumCheckbox.et.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>EnumCheckbox.et.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Components\Generic\EnumSelectList.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>EnumSelectList.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Components\Generic\EnumSelectList.et.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>EnumSelectList.et.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Constants\Constants.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Constants.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\Constants\Constants.et.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Constants.et.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages\SalaryCalculator.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>SalaryCalculator.Designer.cs</LastGenOutput>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages\SalaryCalculator.et.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>SalaryCalculator.et.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Shared\NavMenu.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>NavMenu.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Shared\NavMenu.et.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>NavMenu.et.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages\Index.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Index.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Pages\Index.et.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Index.et.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Components\Generic\EnumCheckbox.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>EnumCheckbox.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Components\Generic\EnumCheckbox.et.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>EnumCheckbox.et.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Components\Generic\EnumSelectList.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>EnumSelectList.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Components\Generic\EnumSelectList.et.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>EnumSelectList.et.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Constants\Constants.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Constants.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Constants\Constants.et.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Constants.et.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Resources\Pages\SalaryCalculator.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>SalaryCalculator.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Pages\SalaryCalculator.et.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>SalaryCalculator.et.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Shared\NavMenu.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>NavMenu.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Shared\NavMenu.et.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>NavMenu.ee.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Pages\Index.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Index.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Pages\Index.et.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Index.et.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Components\Generic\EnumCheckbox.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>EnumCheckbox.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Components\Generic\EnumCheckbox.et.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>EnumCheckbox.et.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Components\Generic\EnumSelectList.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>EnumSelectList.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Components\Generic\EnumSelectList.et.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>EnumSelectList.et.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Constants\Constants.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Constants.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\Constants\Constants.et.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Constants.et.resx</DependentUpon>
-      </Compile>
+        <Compile Update="Resources\Pages\SalaryCalculator.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>SalaryCalculator.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages\SalaryCalculator.et.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>SalaryCalculator.et.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Shared\NavMenu.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>NavMenu.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Shared\NavMenu.et.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>NavMenu.ee.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages\Index.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Index.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Pages\Index.et.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Index.et.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Components\Generic\EnumCheckbox.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>EnumCheckbox.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Components\Generic\EnumCheckbox.et.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>EnumCheckbox.et.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Components\Generic\EnumSelectList.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>EnumSelectList.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Components\Generic\EnumSelectList.et.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>EnumSelectList.et.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Constants\Constants.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Constants.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Constants\Constants.et.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Constants.et.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Enums\EnumCheckbox.razor" />
+        <_ContentIncludedByDefault Remove="Enums\EnumCheckbox.razor"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Application\Application.csproj" />
-      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+        <ProjectReference Include="..\Application\Application.csproj"/>
+        <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

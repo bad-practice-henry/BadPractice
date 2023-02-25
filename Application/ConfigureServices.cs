@@ -1,7 +1,10 @@
-﻿using Mapster;
+﻿#region
+
+using Mapster;
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
 
+#endregion
 
 namespace Application;
 

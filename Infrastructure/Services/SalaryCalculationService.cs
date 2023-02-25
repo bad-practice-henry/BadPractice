@@ -1,8 +1,12 @@
-﻿using Application.Constants;
+﻿#region
+
+using Application.Constants;
 using Application.SalaryCalculation;
 using Infrastructure.Interfaces;
 using Infrastructure.Services.Calculations;
 using ValueType = Application.Constants.ValueType;
+
+#endregion
 
 namespace Infrastructure.Services;
 
@@ -21,6 +25,12 @@ public class SalaryCalculationService : ISalaryCalculationService
         return result;
     }
 
+
+    public SalaryCalculationYearlyResult CalculateYearly(decimal modelBaseValue, ValueType modelValueType, Rate modelRate)
+    {
+        return new SalaryCalculationYearlyResult();
+    }
+
     private static Currency GetCountryCurrency(Country country)
     {
         return country switch
@@ -28,11 +38,5 @@ public class SalaryCalculationService : ISalaryCalculationService
             Country.EE => Currency.EUR,
             _ => throw new ArgumentOutOfRangeException(nameof(country), country, null)
         };
-    }
-
-
-    public SalaryCalculationYearlyResult CalculateYearly(decimal modelBaseValue, ValueType modelValueType, Rate modelRate)
-    {
-        return new SalaryCalculationYearlyResult();
     }
 }

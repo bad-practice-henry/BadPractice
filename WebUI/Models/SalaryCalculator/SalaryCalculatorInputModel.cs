@@ -1,5 +1,9 @@
-﻿using Application.Constants;
+﻿#region
+
+using Application.Constants;
 using ValueType = Application.Constants.ValueType;
+
+#endregion
 
 namespace WebUI.Models.SalaryCalculator;
 

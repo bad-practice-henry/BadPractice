@@ -1,6 +1,10 @@
-﻿using Application.Constants;
+﻿#region
+
+using Application.Constants;
 using Application.SalaryCalculation;
 using ValueType = Application.Constants.ValueType;
+
+#endregion
 
 namespace Infrastructure.Interfaces;
 

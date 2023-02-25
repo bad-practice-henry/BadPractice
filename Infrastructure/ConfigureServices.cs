@@ -1,6 +1,10 @@
-﻿using Infrastructure.Interfaces;
+﻿#region
+
+using Infrastructure.Interfaces;
 using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
+
+#endregion
 
 namespace Infrastructure;
 

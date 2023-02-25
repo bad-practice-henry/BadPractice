@@ -13,25 +13,25 @@ jobs:
     # use ubuntu-latest image to run steps on
     runs-on: ubuntu-latest
     steps:
-    # uses GitHub's checkout action to checkout code form the master branch
-    - uses: actions/checkout@v2
-     
-     # sets up .NET SDK 7.0
-    - name: Setup latest .NET SDKs
-      uses: Elskom/setup-latest-dotnet@v1.1.2
-      with:
-         VERSION_MAJOR: 7
-    # Install dotnet wasm buildtools workload
-    - name: Install .NET WASM Build Tools
-      run: dotnet workload install wasm-tools
+      # uses GitHub's checkout action to checkout code form the master branch
+      - uses: actions/checkout@v2
       
-    # publishes Blazor project to the release-folder
-    - name: Publish .NET Project
-      run: dotnet publish WebUI/WebUI.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
+      # sets up .NET SDK 7.0
+      - name: Setup latest .NET SDKs
+        uses: Elskom/setup-latest-dotnet@v1.1.2
+        with:
+          VERSION_MAJOR: 7
+      # Install dotnet wasm buildtools workload
+      - name: Install .NET WASM Build Tools
+        run: dotnet workload install wasm-tools
       
-    - name: Commit wwwroot to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages
-        folder: dist/Web/wwwroot
+      # publishes Blazor project to the release-folder
+      - name: Publish .NET Project
+        run: dotnet publish WebUI/WebUI.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
+
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist/Web/wwwroot
         

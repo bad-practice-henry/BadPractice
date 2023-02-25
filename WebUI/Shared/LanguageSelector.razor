@@ -13,7 +13,7 @@
 
 @code
 {
-    CultureInfo[] _supportedLanguages = { new("en-US"), new("et-EE"), };
+    CultureInfo[] _supportedLanguages = { new("en-US"), new("et-EE") };
 
     CultureInfo Culture
     {
@@ -23,7 +23,7 @@
             if (Equals(CultureInfo.CurrentCulture, value)) return;
             var js = JsRuntime as IJSInProcessRuntime;
             js?.InvokeVoid("appCulture.set", value.Name);
-            Nav.NavigateTo(Nav.Uri, forceLoad: true);
+            Nav.NavigateTo(Nav.Uri, true);
         }
     }
 
