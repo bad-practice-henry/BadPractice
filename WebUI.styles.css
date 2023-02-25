@@ -22,20 +22,20 @@ main[b-x6zy7vaaoo] {
     align-items: center;
 }
 
-    .top-row[b-x6zy7vaaoo]  a, .top-row[b-x6zy7vaaoo]  .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-        text-decoration: none;
-    }
+.top-row[b-x6zy7vaaoo]  a, .top-row[b-x6zy7vaaoo]  .btn-link {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+    text-decoration: none;
+}
 
-    .top-row[b-x6zy7vaaoo]  a:hover, .top-row[b-x6zy7vaaoo]  .btn-link:hover {
-        text-decoration: underline;
-    }
+.top-row[b-x6zy7vaaoo]  a:hover, .top-row[b-x6zy7vaaoo]  .btn-link:hover {
+    text-decoration: underline;
+}
 
-    .top-row[b-x6zy7vaaoo]  a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.top-row[b-x6zy7vaaoo]  a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth)[b-x6zy7vaaoo] {
@@ -87,7 +87,7 @@ main[b-x6zy7vaaoo] {
 
 .top-row[b-35u9lncdxw] {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .navbar-brand[b-35u9lncdxw] {
@@ -106,30 +106,30 @@ main[b-x6zy7vaaoo] {
     padding-bottom: 0.5rem;
 }
 
-    .nav-item:first-of-type[b-35u9lncdxw] {
-        padding-top: 1rem;
-    }
+.nav-item:first-of-type[b-35u9lncdxw] {
+    padding-top: 1rem;
+}
 
-    .nav-item:last-of-type[b-35u9lncdxw] {
-        padding-bottom: 1rem;
-    }
+.nav-item:last-of-type[b-35u9lncdxw] {
+    padding-bottom: 1rem;
+}
 
-    .nav-item[b-35u9lncdxw]  a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
+.nav-item[b-35u9lncdxw]  a {
+    color: #d7d7d7;
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    line-height: 3rem;
+}
 
 .nav-item[b-35u9lncdxw]  a.active {
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     color: white;
 }
 
 .nav-item[b-35u9lncdxw]  a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
@@ -142,7 +142,7 @@ main[b-x6zy7vaaoo] {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
-    
+
     .nav-scrollable[b-35u9lncdxw] {
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
