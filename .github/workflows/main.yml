@@ -35,6 +35,8 @@ jobs:
       
       - name: Print workspace
         run: echo "The workspace is ${{ github.workspace }}"
+      - name: List directory
+        run: dir
 
       # base href url value should be changed so that resources like CSS and scripts can load properly. 
       - name: Rewrite base href
