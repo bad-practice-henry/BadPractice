@@ -2,14 +2,12 @@
 @inject IJSRuntime JsRuntime
 @inject NavigationManager Nav
 
-<div class="col-md-3">
-    <select class="form-control" @bind="Culture">
-        @foreach (var language in _supportedLanguages)
-        {
-            <option value="@language">@language.ThreeLetterISOLanguageName.ToUpper()</option>
-        }
-    </select>
-</div>
+<select class="form-control" @bind="Culture">
+    @foreach (var language in _supportedLanguages)
+    {
+        <option value="@language">@language.ThreeLetterISOLanguageName.ToUpper()</option>
+    }
+</select>
 
 @code
 {
