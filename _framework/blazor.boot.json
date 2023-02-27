@@ -7,8 +7,8 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Application.dll": "sha256-1VibpeOAYD5Y4n+coxascIF7EBk\/ASYUExOajd5Ys3k=",
-      "Infrastructure.dll": "sha256-Z6WVGRpjQl\/K5Ix3SNlG\/L6Ra6C2MYWDZZ+LvqvhIGY=",
+      "Application.dll": "sha256-zETX\/Qk9IpO24ePceZNslhMKZU4q29+Bex39mOBal7s=",
+      "Infrastructure.dll": "sha256-KriK2zq6T2UuovrAB3BB3BLV0KekuxvJj1TndnKrLy4=",
       "Mapster.Core.dll": "sha256-t4scC57orK9Pzk+stzDyapVp1P7RjVmaEkumPBlVL5c=",
       "Mapster.DependencyInjection.dll": "sha256-4Q+L3sqsvy3GCbflPXnTd2zW1kytbicsU+7xQny8YrE=",
       "Mapster.dll": "sha256-ru7A\/3AB6xrsWcoz+YngxJVJl5vCMYweQzhp7gIfuqA=",
@@ -53,7 +53,7 @@
       "System.Runtime.InteropServices.JavaScript.dll": "sha256-f8zbPoSGr+b6GDdVdMVzjvgvNBQCD05B0GBgGGffWDY=",
       "System.Text.Encodings.Web.dll": "sha256-yy\/rN9E3IoCf\/Z+U1QXz9TuMyxB4Y0+oXXuLLPWJSO4=",
       "System.Text.Json.dll": "sha256-Me3yvCamMU+gvmcuuBtgOkFXEowKDNtDojhtQaR0pao=",
-      "WebUI.dll": "sha256-RiehrO6kZFOQcaUtHRt9Qvy1cNT0iuLWG\/iAU+2KR84="
+      "WebUI.dll": "sha256-4i4lIrgQruWo0axP0Jh+K\/syW0bkhhspbNQnKYXwOa0="
     },
     "extensions": null,
     "lazyAssembly": null,
