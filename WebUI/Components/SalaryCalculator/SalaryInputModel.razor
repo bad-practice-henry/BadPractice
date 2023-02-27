@@ -8,12 +8,21 @@
 <input
     class="form-control form-control-sm mb-2"
     type="number"
-    @bind="_inputModel.BaseValue"
+    @bind="_inputModel.Value"
     @oninput="BaseValue_Changed"/>
 
 <EnumSelectList TEnum="ValueType" ValueChanged="InputValueType_Changed" SelectedValue="_inputModel.ValueType"/>
 
 <EnumCheckbox TEnum="Rate" ValueChanged="Rate_Changed" SelectedValue="_inputModel.Rate"/>
+
+@if (_inputModel.Rate == Rate.Hourly)
+{
+    <input
+        class="form-control form-control-sm mb-2"
+        type="number"
+        @bind="_inputModel.Hours"
+        @oninput="Hours_Changed"/>
+}
 
 
 @code {
@@ -23,7 +32,7 @@
 
     private readonly SalaryCalculatorInputModel _inputModel = new()
     {
-        BaseValue = 0,
+        Value = 0,
         ValueType = ValueType.Gross,
         Rate = Rate.Monthly
     };
@@ -32,7 +41,7 @@
     {
         if (obj.Value is string strValue && !string.IsNullOrEmpty(strValue))
         {
-            _inputModel.BaseValue = decimal.Parse(strValue, new NumberFormatInfo {CurrencyDecimalSeparator = "."});
+            _inputModel.Value = decimal.Parse(strValue, new NumberFormatInfo { CurrencyDecimalSeparator = "." });
         }
         await OnChange();
     }
@@ -46,6 +55,15 @@
     private async Task Rate_Changed(Rate rate)
     {
         _inputModel.Rate = rate;
+        await OnChange();
+    }
+
+    private async Task Hours_Changed(ChangeEventArgs obj)
+    {
+        if (obj.Value is string strValue && !string.IsNullOrEmpty(strValue))
+        {
+            _inputModel.Hours = decimal.Parse(strValue, new NumberFormatInfo { CurrencyDecimalSeparator = "." });
+        }
         await OnChange();
     }
 

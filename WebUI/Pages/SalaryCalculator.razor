@@ -2,6 +2,7 @@
 @using Infrastructure.Interfaces
 @using MapsterMapper
 @using WebUI.Models.SalaryCalculator
+@using Application.SalaryCalculation
 @inject IStringLocalizer<Resources.Pages.SalaryCalculator> Localize;
 @inject ISalaryCalculationService SalaryCalculationService;
 @inject IMapper Mapper;
@@ -25,10 +26,10 @@
 
     private void SalaryInput_Changed(SalaryCalculatorInputModel model)
     {
-        var calculationResult = SalaryCalculationService.CalculateResult(model.BaseValue, model.ValueType);
+        var calculationResult = SalaryCalculationService.CalculateResult(Mapper.Map<SalaryCalculationBaseValues>(model));
         _resultModel = Mapper.Map<SalaryCalculatorResultModel>(calculationResult);
 
-        var yearlyCalculationResult = SalaryCalculationService.CalculateYearly(model.BaseValue, model.ValueType, model.Rate);
+        var yearlyCalculationResult = SalaryCalculationService.CalculateYearly(Mapper.Map<SalaryCalculationBaseValues>(model));
         _yearlyModel = Mapper.Map<SalaryCalculatorYearlyModel>(yearlyCalculationResult);
     }
 

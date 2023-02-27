@@ -20,7 +20,7 @@ public static class EECalculations
     private const decimal MinExceptionSalaryNet = 1056.24m;
     private const decimal MaxExceptionSalaryNet = 1619.52m;
 
-    public static SalaryCalculationResult Monthly(decimal value, ValueType valueType)
+    public static SalaryCalculationResult Calculate(decimal value, ValueType valueType)
     {
         switch (valueType)
         {
@@ -99,14 +99,24 @@ public static class EECalculations
         taxFree = value switch
         {
             <= MinExceptionSalary => TaxFreeMonthlyMax,
-            > MinExceptionSalary and < MaxExceptionSalary => TaxFreeMonthlyMax -
-                                                             TaxFreeMonthlyMax / (MaxExceptionSalary - MinExceptionSalary) *
-                                                             (value - MinExceptionSalary),
+            > MinExceptionSalary and < MaxExceptionSalary =>
+                TaxFreeMonthlyMax -
+                TaxFreeMonthlyMax / (MaxExceptionSalary - MinExceptionSalary) *
+                (value - MinExceptionSalary),
             _ => 0
         };
 
         var incomeTax = (value - taxFree - pensionSecondPillar - unemploymentInsuranceEmployee) * IncomeTaxPercent;
 
         return incomeTax;
+    }
+
+    public static SalaryCalculationYearlyResult CalculateYearly(decimal baseValuesValue, ValueType baseValuesValueType)
+    {
+        return new SalaryCalculationYearlyResult
+        {
+            TaxFreeIncome = 0,
+            AnnualRevenue = baseValuesValue * 12
+        };
     }
 }
