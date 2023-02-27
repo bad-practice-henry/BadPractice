@@ -1,8 +1,5 @@
 name: Deploy to GitHub Pages
 
-env:
-  PUBLISH_DIR: bin/Release/net7.0/wwwroot
-
 # Run workflow on every push to the master branch
 on:
   push:
@@ -37,13 +34,15 @@ jobs:
         run: echo "The workspace is ${{ github.workspace }}"
       - name: List directory
         run: dir
+      - name: List dist/Web directory
+        run: dir ./dist/Web
 
       # base href url value should be changed so that resources like CSS and scripts can load properly. 
       - name: Rewrite base href
         if: success()
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
         with:
-          html_path: ${{ env.PUBLISH_DIR }}/index.html
+          html_path:  dist/Web/index.html
           base_href: ''
 
       - name: Commit wwwroot to GitHub Pages
