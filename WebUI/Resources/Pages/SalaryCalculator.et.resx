@@ -51,4 +51,16 @@
     <data name="UnemploymentInsuranceEmployee" xml:space="preserve">
         <value>Töötuskindlustusmakse (töötaja)</value>
     </data>
+    <data name="AnnualRevenueGross" xml:space="preserve">
+        <value>Aastane brutopalk</value>
+    </data>
+    <data name="AnnualWageFund" xml:space="preserve">
+        <value>Aastane tööandja kulu</value>
+    </data>
+    <data name="AnnualRevenueNet" xml:space="preserve">
+        <value>Aastane netopalk</value>
+    </data>
+    <data name="Monthly" xml:space="preserve">
+        <value>Igakuine</value>
+    </data>
 </root>

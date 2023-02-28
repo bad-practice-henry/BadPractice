@@ -2,10 +2,11 @@
 @using WebUI.Models.SalaryCalculator
 @using System.Globalization
 @inject IStringLocalizer<SalaryCalculator> Localize;
+
 <table class="table table-striped">
     <thead>
     <tr>
-        <th></th>
+        <th>@Localize[nameof(SalaryCalculator.Monthly)]</th>
         <th class="text-right">@Model.Currency.ToString()</th>
     </tr>
     </thead>

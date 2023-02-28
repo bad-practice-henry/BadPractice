@@ -51,4 +51,16 @@
     <data name="NetSalary" xml:space="preserve">
         <value>Net salary</value>
     </data>
+    <data name="AnnualRevenueGross" xml:space="preserve">
+        <value>Annual gross salary</value>
+    </data>
+    <data name="AnnualWageFund" xml:space="preserve">
+        <value>Annual wage fund</value>
+    </data>
+    <data name="AnnualRevenueNet" xml:space="preserve">
+        <value>Annual net salary</value>
+    </data>
+    <data name="Monthly" xml:space="preserve">
+        <value>Monthly</value>
+    </data>
 </root>

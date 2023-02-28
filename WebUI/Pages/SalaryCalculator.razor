@@ -8,15 +8,15 @@
 @inject IMapper Mapper;
 
 <PageTitle>@Localize[Resources.Pages.SalaryCalculator.SalaryCalculatorName]</PageTitle>
-
-<div class="border rounded p-3 mb-3">
-    <SalaryInputModel ValueChanged="SalaryInput_Changed"/>
-</div>
-<div class="border rounded p-3 mb-3">
-    <SalaryResultTable Model="_resultModel"/>
-</div>
-<div class="border rounded p-3 mb-3">
-    <SalaryYearlyCalculations Model="_yearlyModel"/>
+<div class="row">
+    <div class="border rounded p-3 mb-3 col-12 col-lg-6">
+        <SalaryInputModel ValueChanged="SalaryInput_Changed"/>
+        <hr/>
+        <SalaryYearlyCalculations Model="_yearlyModel"/>
+    </div>
+    <div class="border rounded p-3 mb-3 col-12 col-lg-6">
+        <SalaryResultTable Model="_resultModel"/>
+    </div>
 </div>
 
 @code {

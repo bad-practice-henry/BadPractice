@@ -2,14 +2,17 @@
 @typeparam TEnum
 @inject IStringLocalizer<Constants> Localize;
 
-<div class="border rounded p-3 d-flex flex-column">
+<div class="btn-group btn-group-sm mb-2" role="group">
     @foreach (TEnum value in Enum.GetValues(typeof(TEnum)))
     {
-        <label>
-            <input
-                type="checkbox"
-                checked="@Equals(value, SelectedValue)"
-                @onchange="() => HandleValueChanged(value)"/>
+        <input
+            type="radio"
+            class="btn-check"
+            checked="@Equals(value, SelectedValue)"
+            id="@value"
+            @onchange="() => HandleValueChanged(value)"
+            autocomplete="off"/>
+        <label class="btn btn-outline-primary" for="@value">
             @Localize[value.ToString()!]
         </label>
     }

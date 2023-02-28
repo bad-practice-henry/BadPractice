@@ -12,6 +12,7 @@ public class SalaryCalculationBaseValues
     public decimal Value { get; set; }
     public ValueType ValueType { get; set; }
     public Rate Rate { get; set; }
-    public Country Country { get; set; } = Country.EE;
-    public decimal Hours { get; set; } = 0;
+    public Country Country { get; init; }
+    public decimal Hours { get; set; }
+    public decimal TaxFreeAmount { get; set; }
 }

@@ -1,6 +1,22 @@
-﻿@using WebUI.Models.SalaryCalculator
-<table class="table table-sm">
+﻿@using WebUI.Resources.Pages
+@using WebUI.Models.SalaryCalculator
+@inject IStringLocalizer<SalaryCalculator> Localize;
 
+<table class="table table-sm">
+    <thead>
+    <tr>
+        <th>@Localize[nameof(Model.AnnualWageFund)]</th>
+        <th>@Localize[nameof(Model.AnnualRevenueGross)]</th>
+        <th>@Localize[nameof(Model.AnnualRevenueNet)]</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>@Model.AnnualWageFund.ToString("0.00")</td>
+        <td>@Model.AnnualRevenueGross.ToString("0.00")</td>
+        <td>@Model.AnnualRevenueNet.ToString("0.00")</td>
+    </tr>
+    </tbody>
 </table>
 
 @code {

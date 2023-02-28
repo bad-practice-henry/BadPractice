@@ -17,8 +17,8 @@ public class SalaryCalculationService : ISalaryCalculationService
 
         var result = baseValues.Country switch
         {
-            Country.EE => EECalculations.Calculate(baseValues.Value, baseValues.ValueType),
-            _ => throw new ArgumentOutOfRangeException(nameof(baseValues.Country), baseValues.Country, null)
+            Country.EE => EECalculations.Calculate(baseValues),
+            _ => throw new ArgumentOutOfRangeException(baseValues.Country.ToString(), baseValues.Country, null)
         };
 
         result.Currency = GetCountryCurrency(baseValues.Country);
@@ -29,10 +29,12 @@ public class SalaryCalculationService : ISalaryCalculationService
 
     public SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues)
     {
+        baseValues.Value = CalculateValueBasedOnRate(baseValues);
+
         var result = baseValues.Country switch
         {
-            Country.EE => EECalculations.CalculateYearly(baseValues.Value, baseValues.ValueType),
-            _ => throw new ArgumentOutOfRangeException(nameof(baseValues.Country), baseValues.Country, null)
+            Country.EE => EECalculations.CalculateYearly(baseValues),
+            _ => throw new ArgumentOutOfRangeException(baseValues.Country.ToString(), baseValues.Country, null)
         };
 
         result.Currency = GetCountryCurrency(baseValues.Country);
@@ -40,14 +42,14 @@ public class SalaryCalculationService : ISalaryCalculationService
         return result;
     }
 
-    private decimal CalculateValueBasedOnRate(SalaryCalculationBaseValues baseValues)
+    private static decimal CalculateValueBasedOnRate(SalaryCalculationBaseValues baseValues)
     {
         return baseValues.Rate switch
         {
             Rate.Hourly => baseValues.Value * baseValues.Hours,
             Rate.Monthly => baseValues.Value,
             Rate.Yearly => baseValues.Value / 12,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(baseValues.Rate.ToString(), baseValues.Rate, null)
         };
     }
 

@@ -20,20 +20,20 @@ public static class EECalculations
     private const decimal MinExceptionSalaryNet = 1056.24m;
     private const decimal MaxExceptionSalaryNet = 1619.52m;
 
-    public static SalaryCalculationResult Calculate(decimal value, ValueType valueType)
+    public static SalaryCalculationResult Calculate(SalaryCalculationBaseValues baseValues)
     {
-        switch (valueType)
+        switch (baseValues.ValueType)
         {
             case ValueType.EmployerExpense:
-                var grossFromWageFund = CalculateGrossFromWageFund(value);
+                var grossFromWageFund = CalculateGrossFromWageFund(baseValues.Value);
                 return CalculateFromGross(grossFromWageFund);
             case ValueType.Gross:
-                return CalculateFromGross(value);
+                return CalculateFromGross(baseValues.Value);
             case ValueType.Net:
-                var grossFromNet = CalculateGrossFromNet(value);
+                var grossFromNet = CalculateGrossFromNet(baseValues.Value);
                 return CalculateFromGross(grossFromNet);
             default:
-                throw new ArgumentOutOfRangeException(nameof(valueType), valueType, null);
+                throw new ArgumentOutOfRangeException(baseValues.ValueType.ToString(), baseValues.ValueType, null);
         }
     }
 
@@ -111,12 +111,14 @@ public static class EECalculations
         return incomeTax;
     }
 
-    public static SalaryCalculationYearlyResult CalculateYearly(decimal baseValuesValue, ValueType baseValuesValueType)
+    public static SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues)
     {
+        var monthly = Calculate(baseValues);
         return new SalaryCalculationYearlyResult
         {
-            TaxFreeIncome = 0,
-            AnnualRevenue = baseValuesValue * 12
+            AnnualWageFund = monthly.WageFund * 12,
+            AnnualRevenueGross = monthly.GrossSalary * 12,
+            AnnualRevenueNet = monthly.NetSalary * 12
         };
     }
 }

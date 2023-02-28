@@ -60,6 +60,33 @@ namespace WebUI.Resources.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aastane brutopalk.
+        /// </summary>
+        internal static string AnnualRevenueGross {
+            get {
+                return ResourceManager.GetString("AnnualRevenueGross", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aastane netopalk.
+        /// </summary>
+        internal static string AnnualRevenueNet {
+            get {
+                return ResourceManager.GetString("AnnualRevenueNet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aastane tööandja kulu.
+        /// </summary>
+        internal static string AnnualWageFund {
+            get {
+                return ResourceManager.GetString("AnnualWageFund", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brutopalk.
         /// </summary>
         internal static string GrossSalary {
@@ -74,6 +101,15 @@ namespace WebUI.Resources.Pages {
         internal static string IncomeTax {
             get {
                 return ResourceManager.GetString("IncomeTax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Igakuine.
+        /// </summary>
+        internal static string Monthly {
+            get {
+                return ResourceManager.GetString("Monthly", resourceCulture);
             }
         }
         
