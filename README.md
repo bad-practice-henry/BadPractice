@@ -11,3 +11,7 @@ If you somehow manage to find it, feel free to contribute, suggest features, add
 * [Entity Framework Core 7](https://docs.microsoft.com/en-us/ef/core/)
 * [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
 * [Mapster](https://github.com/MapsterMapper/Mapster)
+
+## License
+
+This project is licensed with the [MIT license](LICENSE).
