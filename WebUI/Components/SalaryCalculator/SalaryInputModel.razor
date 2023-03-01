@@ -4,6 +4,7 @@
 @using Application.Constants
 @using System.Globalization
 @inject ISalaryCalculationService SalaryCalculationService;
+@inject IStringLocalizer<Resources.Components.SalaryInputModel> Localize;
 
 <EnumSelectList TEnum="Country"/>
 
@@ -19,11 +20,14 @@
 
 @if (_inputModel.Rate == Rate.Hourly)
 {
-    <input
-        class="form-control form-control-sm"
-        type="number"
-        @bind="_inputModel.Hours"
-        @oninput="Hours_Changed"/>
+    <div class="input-group mb-3">
+        <input
+            class="form-control form-control-sm"
+            type="number"
+            @bind="_inputModel.Hours"
+            @oninput="Hours_Changed"/>
+        <span class="input-group-text">@Localize[nameof(Resources.Components.SalaryInputModel.Hours)]</span>
+    </div>
 }
 
 
@@ -32,12 +36,18 @@
     [Parameter]
     public EventCallback<SalaryCalculatorInputModel> ValueChanged { get; set; }
 
+    protected override async void OnInitialized()
+    {
+        _inputModel.Hours = await SalaryCalculationService.GetWorkingHoursOfCurrentMonth(_inputModel.Country);
+        await base.OnInitializedAsync();
+    }
+
     private readonly SalaryCalculatorInputModel _inputModel = new()
     {
         Value = 0,
         ValueType = ValueType.Gross,
         Rate = Rate.Monthly,
-        Hours = 152,
+        Hours = 0,
         Country = Country.EE
     };
 

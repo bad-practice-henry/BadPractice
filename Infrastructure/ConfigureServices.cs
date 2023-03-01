@@ -12,6 +12,7 @@ public static class ConfigureServices
 {
     public static void AddInfrastructureServices(this IServiceCollection services)
     {
-        services.AddSingleton<ISalaryCalculationService, SalaryCalculationService>();
+        services.AddScoped<ISalaryCalculationService, SalaryCalculationService>();
+        services.AddScoped<HttpClient>();
     }
 }

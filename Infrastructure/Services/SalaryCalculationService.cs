@@ -1,5 +1,6 @@
 ﻿#region
 
+using System.Net.Http.Json;
 using Application.Constants;
 using Application.SalaryCalculation;
 using Infrastructure.Interfaces;
@@ -11,6 +12,13 @@ namespace Infrastructure.Services;
 
 public class SalaryCalculationService : ISalaryCalculationService
 {
+    private readonly HttpClient _httpClient;
+
+    public SalaryCalculationService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
+
     public SalaryCalculationResult CalculateResult(SalaryCalculationBaseValues baseValues)
     {
         baseValues.Value = CalculateValueBasedOnRate(baseValues);
@@ -40,6 +48,15 @@ public class SalaryCalculationService : ISalaryCalculationService
         result.Currency = GetCountryCurrency(baseValues.Country);
 
         return result;
+    }
+
+    public async Task<int> GetWorkingHoursOfCurrentMonth(Country country)
+    {
+        var result = await _httpClient.GetFromJsonAsync<int[]>($"data/WorkingHours.{country.ToString()}.json");
+        if (result is null) return 0;
+
+        var currentMonth = DateTime.Now.Month;
+        return result.Length < currentMonth ? 0 : result[currentMonth - 1];
     }
 
     private static decimal CalculateValueBasedOnRate(SalaryCalculationBaseValues baseValues)
