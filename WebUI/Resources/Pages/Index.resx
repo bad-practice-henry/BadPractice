@@ -27,4 +27,7 @@
     <data name="IndexDisplayName" xml:space="preserve">
         <value>Index</value>
     </data>
+    <data name="Favourites" xml:space="preserve">
+        <value>Favourites</value>
+    </data>
 </root>

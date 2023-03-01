@@ -60,6 +60,15 @@ namespace WebUI.Resources.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Favourites.
+        /// </summary>
+        internal static string Favourites {
+            get {
+                return ResourceManager.GetString("Favourites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Index.
         /// </summary>
         internal static string IndexDisplayName {
