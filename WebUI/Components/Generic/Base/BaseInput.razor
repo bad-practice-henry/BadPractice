@@ -1,0 +1,31 @@
+﻿@typeparam TType
+
+@code {
+
+    [Parameter]
+    public virtual TType? InputValue { get; set; }
+
+    [Parameter]
+    public string InputGroupText { get; set; } = string.Empty;
+
+    [Parameter]
+    public string FormLabel { get; set; } = string.Empty;
+
+    [Parameter]
+    public virtual EventCallback<TType> ValueChanged { get; set; }
+
+    protected string Id { get; private set; } = default!;
+
+    protected virtual async Task HandleValueChanged(ChangeEventArgs eventArgs)
+    {
+        InputValue = eventArgs.Value is TType type ? type : default;
+        await ValueChanged.InvokeAsync(InputValue);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Id = Guid.NewGuid().ToString("N")[..6];
+        await base.OnInitializedAsync();
+    }
+
+}

@@ -21,14 +21,14 @@ namespace WebUI.Resources.Components.Generic {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class EnumCheckbox {
+    internal class EnumRadio_et {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EnumCheckbox() {
+        internal EnumRadio_et() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace WebUI.Resources.Components.Generic {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebUI.Resources.Components.Generic.EnumCheckbox", typeof(EnumCheckbox).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WebUI.Resources.Components.Generic.EnumRadio.et", typeof(EnumRadio_et).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

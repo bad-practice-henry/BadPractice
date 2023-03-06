@@ -24,7 +24,16 @@
             PublicKeyToken=b77a5c561934e089
         </value>
     </resheader>
-    <data name="Hours" xml:space="preserve">
-        <value>tundi</value>
+    <data name="UseTaxFree" xml:space="preserve">
+        <value>Kasuta tulumaksuvaba summat</value>
+    </data>
+    <data name="UseUnemploymentInsuranceEmployer" xml:space="preserve">
+        <value>Tööandja töötuskindlustusmakse</value>
+    </data>
+    <data name="UseUnemploymentInsuranceEmployee" xml:space="preserve">
+        <value>Töötaja töötuskindlustusmakse</value>
+    </data>
+    <data name="UsePensionSecondPillar" xml:space="preserve">
+        <value>Pensioni II samba maksed</value>
     </data>
 </root>

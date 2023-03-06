@@ -1,0 +1,16 @@
+﻿@typeparam TModel where TModel : new()
+
+@code {
+
+    [Parameter]
+    public virtual TModel Model { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<TModel> ValueChanged { get; set; }
+
+    protected async Task OnChange()
+    {
+        await ValueChanged.InvokeAsync(Model);
+    }
+
+}

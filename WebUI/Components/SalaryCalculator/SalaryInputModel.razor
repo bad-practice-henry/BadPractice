@@ -1,93 +1,76 @@
-﻿@using Infrastructure.Interfaces
-@using WebUI.Models.SalaryCalculator
+﻿@inject ISalaryCalculationService SalaryCalculationService;
+@inject IStringLocalizer<Resources.Components.SalaryInputModel> Localize;
+@using Infrastructure.Interfaces
 @using ValueType = Application.Constants.ValueType
 @using Application.Constants
-@using System.Globalization
-@inject ISalaryCalculationService SalaryCalculationService;
-@inject IStringLocalizer<Resources.Components.SalaryInputModel> Localize;
+@using WebUI.Models.SalaryCalculator
+@inherits WebUI.Components.Generic.Base.BaseComponent<WebUI.Models.SalaryCalculator.SalaryCalculatorInputModel>
 
 <EnumSelectList TEnum="Country"/>
 
-<input
-    class="form-control form-control-sm mb-2"
-    type="number"
-    @bind="_inputModel.Value"
-    @oninput="BaseValue_Changed"/>
+<NumberInput
+    ValueChanged="BaseValue_Changed"
+    InputValue="Model.Value"/>
 
-<EnumSelectList TEnum="ValueType" ValueChanged="InputValueType_Changed" SelectedValue="_inputModel.ValueType"/>
+<EnumSelectList
+    TEnum="ValueType"
+    ValueChanged="InputValueType_Changed"
+    InputValue="Model.ValueType"/>
 
-<EnumCheckbox TEnum="Rate" ValueChanged="Rate_Changed" SelectedValue="_inputModel.Rate"/>
+<EnumRadio
+    TEnum="Rate"
+    ValueChanged="Rate_Changed"
+    InputValue="Model.Rate"/>
 
-@if (_inputModel.Rate == Rate.Hourly)
+@if (Model.Rate == Rate.Hourly)
 {
-    <div class="input-group mb-3">
-        <input
-            class="form-control form-control-sm"
-            type="number"
-            @bind="_inputModel.Hours"
-            @oninput="Hours_Changed"/>
-        <span class="input-group-text">@Localize[Resources.Components.SalaryInputModel.Hours]</span>
-    </div>
+    <NumberInput
+        ValueChanged="Hours_Changed"
+        InputValue="Model.Hours"
+        InputGroupText="@Localize[Resources.Components.SalaryInputModel.Hours]"/>
 }
+
+<SalaryCalculationOptions
+    ValueChanged="SalaryCalculationOptions_Changed"
+    Model="Model.SalaryCalculatorOptions"/>
 
 
 @code {
 
-    [Parameter]
-    public EventCallback<SalaryCalculatorInputModel> ValueChanged { get; set; }
-
     protected override async void OnInitialized()
     {
-        _inputModel.Hours = await SalaryCalculationService.GetWorkingHoursOfCurrentMonth(_inputModel.Country);
+        Model.Hours = await SalaryCalculationService.GetWorkingHoursOfCurrentMonth(Model.Country);
         await base.OnInitializedAsync();
     }
 
-    private readonly SalaryCalculatorInputModel _inputModel = new()
+    private async void BaseValue_Changed(decimal value)
     {
-        Value = 0,
-        ValueType = ValueType.Gross,
-        Rate = Rate.Monthly,
-        Hours = 0,
-        Country = Country.EE
-    };
-
-    private async Task BaseValue_Changed(ChangeEventArgs obj)
-    {
-        if (obj.Value is string strValue && !string.IsNullOrEmpty(strValue))
-        {
-            _inputModel.Value = decimal.Parse(strValue, new NumberFormatInfo { CurrencyDecimalSeparator = "." });
-        }
-        else
-        {
-            _inputModel.Value = decimal.Zero;
-        }
+        Model.Value = value;
         await OnChange();
     }
 
     private async Task InputValueType_Changed(ValueType valueType)
     {
-        _inputModel.ValueType = valueType;
+        Model.ValueType = valueType;
         await OnChange();
     }
 
     private async Task Rate_Changed(Rate rate)
     {
-        _inputModel.Rate = rate;
+        Model.Rate = rate;
         await OnChange();
     }
 
-    private async Task Hours_Changed(ChangeEventArgs obj)
+    private async Task Hours_Changed(decimal value)
     {
-        if (obj.Value is string strValue && !string.IsNullOrEmpty(strValue))
-        {
-            _inputModel.Hours = decimal.Parse(strValue, new NumberFormatInfo { CurrencyDecimalSeparator = "." });
-        }
+        Model.Hours = value;
         await OnChange();
     }
 
-    private async Task OnChange()
+    private async Task SalaryCalculationOptions_Changed(SalaryCalculatorOptionsModel options)
     {
-        await ValueChanged.InvokeAsync(_inputModel);
+        Model.SalaryCalculatorOptions = options;
+        await OnChange();
     }
 
 }

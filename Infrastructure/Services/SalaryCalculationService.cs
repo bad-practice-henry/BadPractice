@@ -19,13 +19,13 @@ public class SalaryCalculationService : ISalaryCalculationService
         _httpClient = httpClient;
     }
 
-    public SalaryCalculationResult CalculateResult(SalaryCalculationBaseValues baseValues)
+    public SalaryCalculationResult CalculateResult(SalaryCalculationBaseValues baseValues, SalaryCalculationOptions options)
     {
-        baseValues.Value = CalculateValueBasedOnRate(baseValues);
+        baseValues.Value = CalculateMonthlyValueBasedOnRate(baseValues);
 
         var result = baseValues.Country switch
         {
-            Country.EE => EECalculations.Calculate(baseValues),
+            Country.EE => EECalculations.Calculate(baseValues, options),
             _ => throw new ArgumentOutOfRangeException(baseValues.Country.ToString(), baseValues.Country, null)
         };
 
@@ -34,14 +34,13 @@ public class SalaryCalculationService : ISalaryCalculationService
         return result;
     }
 
-
-    public SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues)
+    public SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues, SalaryCalculationOptions options)
     {
-        baseValues.Value = CalculateValueBasedOnRate(baseValues);
+        baseValues.Value = CalculateMonthlyValueBasedOnRate(baseValues);
 
         var result = baseValues.Country switch
         {
-            Country.EE => EECalculations.CalculateYearly(baseValues),
+            Country.EE => EECalculations.CalculateYearly(baseValues, options),
             _ => throw new ArgumentOutOfRangeException(baseValues.Country.ToString(), baseValues.Country, null)
         };
 
@@ -59,7 +58,7 @@ public class SalaryCalculationService : ISalaryCalculationService
         return result.Length < currentMonth ? 0 : result[currentMonth - 1];
     }
 
-    private static decimal CalculateValueBasedOnRate(SalaryCalculationBaseValues baseValues)
+    private static decimal CalculateMonthlyValueBasedOnRate(SalaryCalculationBaseValues baseValues)
     {
         return baseValues.Rate switch
         {

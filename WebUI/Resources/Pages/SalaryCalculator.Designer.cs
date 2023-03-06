@@ -150,6 +150,15 @@ namespace WebUI.Resources.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tax free income.
+        /// </summary>
+        internal static string TaxFreeException {
+            get {
+                return ResourceManager.GetString("TaxFreeException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unemployment insurance (employee).
         /// </summary>
         internal static string UnemploymentInsuranceEmployee {

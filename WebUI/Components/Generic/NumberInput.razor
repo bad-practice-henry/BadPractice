@@ -1,0 +1,30 @@
+﻿@using System.Globalization
+@inherits WebUI.Components.Generic.Base.BaseInput<decimal>
+
+<div class="input-group mb-2">
+    <input
+        class="form-control form-control-sm"
+        type="number"
+        value="@InputValue"
+        id="@Id"
+        @oninput="HandleValueChanged"/>
+
+    @if (!string.IsNullOrWhiteSpace(InputGroupText))
+    {
+        <span class="input-group-text">@InputGroupText</span>
+    }
+</div>
+
+@code {
+
+    protected override async Task HandleValueChanged(ChangeEventArgs eventArgs)
+    {
+        var stringValue = eventArgs.Value?.ToString() ?? "";
+        var value = string.IsNullOrWhiteSpace(stringValue) ?
+            decimal.Zero :
+            decimal.Parse(stringValue, new NumberFormatInfo { CurrencyDecimalSeparator = "." });
+        InputValue = value;
+        await ValueChanged.InvokeAsync(InputValue);
+    }
+
+}

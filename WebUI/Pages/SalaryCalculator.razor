@@ -3,14 +3,16 @@
 @using MapsterMapper
 @using WebUI.Models.SalaryCalculator
 @using Application.SalaryCalculation
+@using SalaryCalculationOptions = Application.SalaryCalculation.SalaryCalculationOptions
 @inject IStringLocalizer<Resources.Pages.SalaryCalculator> Localize;
 @inject ISalaryCalculationService SalaryCalculationService;
 @inject IMapper Mapper;
 
 <PageTitle>@Localize[Resources.Pages.SalaryCalculator.SalaryCalculatorName]</PageTitle>
+
 <div class="row">
     <div class="border rounded p-3 mb-3 col-12 col-lg-6">
-        <SalaryInputModel ValueChanged="SalaryInput_Changed"/>
+        <SalaryInputModel ValueChanged="SalaryInput_Changed" Model="_inputModel"/>
         <hr/>
         <SalaryYearlyCalculations Model="_yearlyModel"/>
     </div>
@@ -21,15 +23,20 @@
 
 @code {
 
+    private readonly SalaryCalculatorInputModel _inputModel = new();
     private SalaryCalculatorResultModel _resultModel = new();
     private SalaryCalculatorYearlyModel _yearlyModel = new();
 
     private void SalaryInput_Changed(SalaryCalculatorInputModel model)
     {
-        var calculationResult = SalaryCalculationService.CalculateResult(Mapper.Map<SalaryCalculationBaseValues>(model));
+        var calculationResult = SalaryCalculationService.CalculateResult(
+            Mapper.Map<SalaryCalculationBaseValues>(model),
+            Mapper.Map<SalaryCalculationOptions>(model.SalaryCalculatorOptions));
         _resultModel = Mapper.Map<SalaryCalculatorResultModel>(calculationResult);
 
-        var yearlyCalculationResult = SalaryCalculationService.CalculateYearly(Mapper.Map<SalaryCalculationBaseValues>(model));
+        var yearlyCalculationResult = SalaryCalculationService.CalculateYearly(
+            Mapper.Map<SalaryCalculationBaseValues>(model),
+            Mapper.Map<SalaryCalculationOptions>(model.SalaryCalculatorOptions));
         _yearlyModel = Mapper.Map<SalaryCalculatorYearlyModel>(yearlyCalculationResult);
     }
 

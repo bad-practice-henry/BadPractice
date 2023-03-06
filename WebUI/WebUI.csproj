@@ -45,13 +45,13 @@
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Index.et.Designer.cs</LastGenOutput>
         </EmbeddedResource>
-        <EmbeddedResource Update="Resources\Components\Generic\EnumCheckbox.resx">
+        <EmbeddedResource Update="Resources\Components\Generic\EnumRadio.resx">
             <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>EnumCheckbox.Designer.cs</LastGenOutput>
+            <LastGenOutput>EnumRadio.Designer.cs</LastGenOutput>
         </EmbeddedResource>
-        <EmbeddedResource Update="Resources\Components\Generic\EnumCheckbox.et.resx">
+        <EmbeddedResource Update="Resources\Components\Generic\EnumRadio.et.resx">
             <Generator>ResXFileCodeGenerator</Generator>
-            <LastGenOutput>EnumCheckbox.et.Designer.cs</LastGenOutput>
+            <LastGenOutput>EnumRadio.et.Designer.cs</LastGenOutput>
         </EmbeddedResource>
         <EmbeddedResource Update="Resources\Components\Generic\EnumSelectList.resx">
             <Generator>ResXFileCodeGenerator</Generator>
@@ -76,6 +76,14 @@
         <EmbeddedResource Update="Resources\Components\SalaryInputModel.et.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>SalaryInputModel.et.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Components\SalaryCalculationOptions.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>SalaryCalculationOptions.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Components\SalaryCalculationOptions.et.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>SalaryCalculationOptions.et.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
 
@@ -110,15 +118,15 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Index.et.resx</DependentUpon>
         </Compile>
-        <Compile Update="Resources\Components\Generic\EnumCheckbox.Designer.cs">
+        <Compile Update="Resources\Components\Generic\EnumRadio.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
-            <DependentUpon>EnumCheckbox.resx</DependentUpon>
+            <DependentUpon>EnumRadio.resx</DependentUpon>
         </Compile>
-        <Compile Update="Resources\Components\Generic\EnumCheckbox.et.Designer.cs">
+        <Compile Update="Resources\Components\Generic\EnumRadio.et.Designer.cs">
             <DesignTime>True</DesignTime>
             <AutoGen>True</AutoGen>
-            <DependentUpon>EnumCheckbox.et.resx</DependentUpon>
+            <DependentUpon>EnumRadio.et.resx</DependentUpon>
         </Compile>
         <Compile Update="Resources\Components\Generic\EnumSelectList.Designer.cs">
             <DesignTime>True</DesignTime>
@@ -150,10 +158,16 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>SalaryInputModel.et.resx</DependentUpon>
         </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-        <_ContentIncludedByDefault Remove="Enums\EnumCheckbox.razor"/>
+        <Compile Update="Resources\Components\SalaryCalculationOptions.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>SalaryCalculationOptions.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Components\SalaryCalculationOptions.et.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>SalaryCalculationOptions.et.resx</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>

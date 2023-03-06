@@ -20,24 +20,24 @@ public static class EECalculations
     private const decimal MinExceptionSalaryNet = 1056.24m;
     private const decimal MaxExceptionSalaryNet = 1619.52m;
 
-    public static SalaryCalculationResult Calculate(SalaryCalculationBaseValues baseValues)
+    public static SalaryCalculationResult Calculate(SalaryCalculationBaseValues baseValues, SalaryCalculationOptions options)
     {
         switch (baseValues.ValueType)
         {
             case ValueType.EmployerExpense:
-                var grossFromWageFund = CalculateGrossFromWageFund(baseValues.Value);
-                return CalculateFromGross(grossFromWageFund);
+                var grossFromWageFund = CalculateGrossFromWageFund(baseValues.Value, options.UseUnemploymentInsuranceEmployer);
+                return CalculateFromGross(grossFromWageFund, options);
             case ValueType.Gross:
-                return CalculateFromGross(baseValues.Value);
+                return CalculateFromGross(baseValues.Value, options);
             case ValueType.Net:
-                var grossFromNet = CalculateGrossFromNet(baseValues.Value);
-                return CalculateFromGross(grossFromNet);
+                var grossFromNet = CalculateGrossFromNet(baseValues.Value, options);
+                return CalculateFromGross(grossFromNet, options);
             default:
                 throw new ArgumentOutOfRangeException(baseValues.ValueType.ToString(), baseValues.ValueType, null);
         }
     }
 
-    private static decimal CalculateGrossFromNet(decimal value)
+    private static decimal CalculateGrossFromNet(decimal value, SalaryCalculationOptions options)
     {
         switch (value)
         {
@@ -45,25 +45,30 @@ public static class EECalculations
                 return 0;
             case <= MinExceptionSalaryNet:
                 if (value <= TaxFreeMonthlyMax)
-                    return value / (1 - UnemploymentInsuranceEmployeePercent - FundedPensionSecondPillarPercent);
+                    return value / (1 -
+                                    (options.UseUnemploymentInsuranceEmployee ? UnemploymentInsuranceEmployeePercent : 0) -
+                                    (options.UsePensionSecondPillar ? FundedPensionSecondPillarPercent : 0));
 
-                return (value - 130.8m) / 0.7712m; // 0.7712x + 130.8
+                return (value - 130.8m) / 0.7712m;
             case > MinExceptionSalaryNet and < MaxExceptionSalaryNet:
-                return (value - 305.2m) / 0.625867m; // 0.625867x + 305.2
+                return (value - 305.2m) / 0.625867m;
             default:
-                return value / 0.7712m; // 0.7712x
+                return value / 0.7712m;
         }
     }
 
-    private static SalaryCalculationResult CalculateFromGross(decimal value)
+    private static SalaryCalculationResult CalculateFromGross(decimal value, SalaryCalculationOptions salaryCalculationOptions)
     {
         if (value <= 0) return new SalaryCalculationResult();
 
         var socialTax = value * SocialTaxPercent;
-        var unemploymentInsuranceEmployer = value * UnemploymentInsuranceEmployerPercent;
-        var pensionSecondPillar = value * FundedPensionSecondPillarPercent;
-        var unemploymentInsuranceEmployee = value * UnemploymentInsuranceEmployeePercent;
-        var incomeTax = CalculateIncomeTax(value, pensionSecondPillar, unemploymentInsuranceEmployee, out var taxFree);
+        var unemploymentInsuranceEmployer =
+            value * (salaryCalculationOptions.UseUnemploymentInsuranceEmployer ? UnemploymentInsuranceEmployerPercent : 0);
+        var pensionSecondPillar = value * (salaryCalculationOptions.UsePensionSecondPillar ? FundedPensionSecondPillarPercent : 0);
+        var unemploymentInsuranceEmployee =
+            value * (salaryCalculationOptions.UseUnemploymentInsuranceEmployee ? UnemploymentInsuranceEmployeePercent : 0);
+        var incomeTax = CalculateIncomeTax(value, pensionSecondPillar, unemploymentInsuranceEmployee, salaryCalculationOptions,
+            out var taxFree);
         var netSalary = value - (pensionSecondPillar + unemploymentInsuranceEmployee + incomeTax);
 
         return new SalaryCalculationResult
@@ -80,19 +85,29 @@ public static class EECalculations
         };
     }
 
-    private static decimal CalculateGrossFromWageFund(decimal value)
+    private static decimal CalculateGrossFromWageFund(decimal value, bool useUnemploymentInsuranceEmployer)
     {
-        return value / (1 + SocialTaxPercent + UnemploymentInsuranceEmployerPercent);
+        return value / (1 + SocialTaxPercent + (useUnemploymentInsuranceEmployer ? UnemploymentInsuranceEmployerPercent : 0));
     }
 
-    private static decimal CalculateIncomeTax(decimal value, decimal pensionSecondPillar, decimal unemploymentInsuranceEmployee,
+    private static decimal CalculateIncomeTax(
+        decimal value,
+        decimal pensionSecondPillar,
+        decimal unemploymentInsuranceEmployee,
+        SalaryCalculationOptions salaryCalculationOptions,
         out decimal taxFree)
     {
+        if (!salaryCalculationOptions.UseTaxFree)
+        {
+            taxFree = 0;
+            return value * IncomeTaxPercent;
+        }
+
         if (value - TaxFreeMonthlyMax - pensionSecondPillar - unemploymentInsuranceEmployee <= 0)
         {
             taxFree = TaxFreeMonthlyMax;
             if (value < TaxFreeMonthlyMax)
-                taxFree = value;
+                taxFree = value - pensionSecondPillar - unemploymentInsuranceEmployee;
             return 0;
         }
 
@@ -111,9 +126,10 @@ public static class EECalculations
         return incomeTax;
     }
 
-    public static SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues)
+    public static SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues,
+        SalaryCalculationOptions salaryCalculationOptions)
     {
-        var monthly = Calculate(baseValues);
+        var monthly = Calculate(baseValues, salaryCalculationOptions);
         return new SalaryCalculationYearlyResult
         {
             AnnualWageFund = monthly.WageFund * 12,

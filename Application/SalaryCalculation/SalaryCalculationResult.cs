@@ -15,7 +15,7 @@ public class SalaryCalculationResult
     public decimal PensionSecondPillar { get; set; }
     public decimal UnemploymentInsuranceEmployee { get; set; }
     public decimal IncomeTax { get; set; }
+    public decimal TaxFreeException { get; set; }
     public decimal NetSalary { get; set; }
     public Currency Currency { get; set; }
-    public decimal TaxFreeException { get; set; }
 }

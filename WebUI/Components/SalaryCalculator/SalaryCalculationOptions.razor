@@ -1,0 +1,62 @@
+﻿@inject IStringLocalizer<Resources.Components.SalaryCalculationOptions> Localize;
+@using WebUI.Models.SalaryCalculator
+@inherits WebUI.Components.Generic.Base.BaseComponent<WebUI.Models.SalaryCalculator.SalaryCalculatorOptionsModel>
+
+<Checkbox
+    InputValue="Model.UseTaxFree"
+    ValueChanged="UseTaxFree_Changed"
+    FormLabel="@Localize[Resources.Components.SalaryCalculationOptions.UseTaxFree]"/>
+<Checkbox
+    InputValue="Model.UsePensionSecondPillar"
+    ValueChanged="UsePensionSecondPillar_Changed"
+    FormLabel="@Localize[Resources.Components.SalaryCalculationOptions.UsePensionSecondPillar]"/>
+<Checkbox
+    InputValue="Model.UseUnemploymentInsuranceEmployee"
+    ValueChanged="UseUnemploymentInsuranceEmployee_Changed"
+    FormLabel="@Localize[Resources.Components.SalaryCalculationOptions.UseUnemploymentInsuranceEmployee]"/>
+<Checkbox
+    InputValue="Model.UseUnemploymentInsuranceEmployer"
+    ValueChanged="UseUnemploymentInsuranceEmployer_Changed"
+    FormLabel="@Localize[Resources.Components.SalaryCalculationOptions.UseUnemploymentInsuranceEmployer]"/>
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        Model = new SalaryCalculatorOptionsModel
+        {
+            UseTaxFree = true,
+            UseUnemploymentInsuranceEmployer = true,
+            UseUnemploymentInsuranceEmployee = true,
+            UsePensionSecondPillar = true
+        };
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task UseTaxFree_Changed(bool useTaxFree)
+    {
+        Model.UseTaxFree = useTaxFree;
+        await OnChange();
+    }
+
+    private async Task UsePensionSecondPillar_Changed(bool usePensionSecondPillar)
+    {
+        Model.UsePensionSecondPillar = usePensionSecondPillar;
+        await OnChange();
+    }
+
+    private async Task UseUnemploymentInsuranceEmployee_Changed(bool useUnemploymentInsuranceEmployee)
+    {
+        Model.UseUnemploymentInsuranceEmployee = useUnemploymentInsuranceEmployee;
+        await OnChange();
+    }
+
+    private async Task UseUnemploymentInsuranceEmployer_Changed(bool useUnemploymentInsuranceEmployer)
+    {
+        Model.UseUnemploymentInsuranceEmployer = useUnemploymentInsuranceEmployer;
+        await OnChange();
+    }
+
+}

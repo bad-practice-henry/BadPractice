@@ -6,6 +6,6 @@ using Application.SalaryCalculation;
 
 namespace WebUI.Models.SalaryCalculator;
 
-public class SalaryCalculatorYearlyModel : SalaryCalculationYearlyResult
+public class SalaryCalculatorOptionsModel : SalaryCalculationOptions
 {
 }

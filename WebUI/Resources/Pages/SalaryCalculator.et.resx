@@ -63,4 +63,7 @@
     <data name="Monthly" xml:space="preserve">
         <value>Igakuine</value>
     </data>
+    <data name="TaxFreeException" xml:space="preserve">
+        <value>Maksuvaba tulu</value>
+    </data>
 </root>

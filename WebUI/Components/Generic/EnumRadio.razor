@@ -1,0 +1,36 @@
+﻿@typeparam TEnum where TEnum : struct, Enum;
+@inject IStringLocalizer<Constants> Localize;
+@using WebUI.Resources.Constants
+@inherits WebUI.Components.Generic.Base.BaseInput<TEnum>
+
+<div class="btn-group-sm mb-2" role="group">
+    @foreach (TEnum value in Enum.GetValues(typeof(TEnum)))
+    {
+        <input
+            type="radio"
+            class="btn-check"
+            checked="@Equals(value, InputValue)"
+            id="@value"
+            @onchange="_ => HandleValueChanged(_, value)"
+            autocomplete="off"/>
+        <label class="btn btn-outline-primary" for="@value">
+            @Localize[value.ToString()]
+        </label>
+    }
+</div>
+
+@code {
+
+
+    private async Task HandleValueChanged(ChangeEventArgs eventArgs, TEnum inputValue)
+    {
+        InputValue = inputValue;
+        await HandleValueChanged(eventArgs);
+    }
+
+    protected override async Task HandleValueChanged(ChangeEventArgs eventArgs)
+    {
+        await ValueChanged.InvokeAsync(InputValue);
+    }
+
+}

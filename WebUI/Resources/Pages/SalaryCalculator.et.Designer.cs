@@ -150,6 +150,15 @@ namespace WebUI.Resources.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maksuvaba tulu.
+        /// </summary>
+        internal static string TaxFreeException {
+            get {
+                return ResourceManager.GetString("TaxFreeException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Töötuskindlustusmakse (töötaja).
         /// </summary>
         internal static string UnemploymentInsuranceEmployee {

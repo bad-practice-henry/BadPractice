@@ -1,35 +1,21 @@
-﻿@using WebUI.Resources.Constants
-@using System.Text.Json
-@typeparam TEnum where TEnum : struct, Enum;
+﻿@typeparam TEnum where TEnum : struct, Enum;
 @inject IStringLocalizer<Constants> Localize;
+@using WebUI.Resources.Constants
+@inherits WebUI.Components.Generic.Base.BaseInput<TEnum>
 
 <select class="form-select form-select-sm mb-2" @onchange="HandleValueChanged" disabled="@(Enum.GetValues(typeof(TEnum)).Length < 2)">
     @foreach (TEnum option in Enum.GetValues(typeof(TEnum)))
     {
-        <option value="@option" selected="@Equals(option, SelectedValue)">@Localize[option.ToString()!]</option>
+        <option value="@option" selected="@Equals(option, InputValue)">@Localize[option.ToString()]</option>
     }
 </select>
 
 @code {
 
-    [Parameter]
-    public TEnum SelectedValue { get; set; }
-
-    [Parameter]
-    public EventCallback<TEnum> ValueChanged { get; set; }
-
-    private async Task HandleValueChanged(object value)
+    protected override async Task HandleValueChanged(ChangeEventArgs eventArgs)
     {
-        var result = JsonSerializer.Deserialize<EnumSelectListValue>(JsonSerializer.Serialize(value));
-        if (result is not {}) return;
-
-        SelectedValue = Enum.Parse<TEnum>(result.Value);
-        await ValueChanged.InvokeAsync(SelectedValue);
-    }
-
-    private class EnumSelectListValue
-    {
-        public string Value { get; set; } = default!;
+        InputValue = Enum.Parse<TEnum>(eventArgs.Value?.ToString() ?? "");
+        await ValueChanged.InvokeAsync(InputValue);
     }
 
 }

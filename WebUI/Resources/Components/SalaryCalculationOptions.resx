@@ -24,7 +24,16 @@
             PublicKeyToken=b77a5c561934e089
         </value>
     </resheader>
-    <data name="Hours" xml:space="preserve">
-        <value>tundi</value>
+    <data name="UseTaxFree" xml:space="preserve">
+        <value>Use tax free</value>
+    </data>
+    <data name="UseUnemploymentInsuranceEmployer" xml:space="preserve">
+        <value>Employer unemployment insurance payment</value>
+    </data>
+    <data name="UseUnemploymentInsuranceEmployee" xml:space="preserve">
+        <value>Employee unemployment insurance payment</value>
+    </data>
+    <data name="UsePensionSecondPillar" xml:space="preserve">
+        <value>Pension second pillar payments</value>
     </data>
 </root>

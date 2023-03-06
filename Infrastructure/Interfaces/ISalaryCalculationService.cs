@@ -9,7 +9,7 @@ namespace Infrastructure.Interfaces;
 
 public interface ISalaryCalculationService
 {
-    SalaryCalculationResult CalculateResult(SalaryCalculationBaseValues baseValues);
-    SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues);
+    SalaryCalculationResult CalculateResult(SalaryCalculationBaseValues baseValues, SalaryCalculationOptions options);
+    SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues, SalaryCalculationOptions options);
     Task<int> GetWorkingHoursOfCurrentMonth(Country country);
 }

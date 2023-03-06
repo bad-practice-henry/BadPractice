@@ -1,0 +1,25 @@
+﻿@inherits WebUI.Components.Generic.Base.BaseInput<string>
+
+<div class="input-group mb-2">
+    <input
+        class="form-control form-control-sm"
+        type="text"
+        value="@InputValue"
+        id="@Id"
+        @oninput="HandleValueChanged"/>
+
+    @if (!string.IsNullOrWhiteSpace(InputGroupText))
+    {
+        <span class="input-group-text">@InputGroupText</span>
+    }
+</div>
+
+@code {
+
+    protected override async Task HandleValueChanged(ChangeEventArgs eventArgs)
+    {
+        InputValue = eventArgs.Value?.ToString() ?? "";
+        await ValueChanged.InvokeAsync(InputValue);
+    }
+
+}
