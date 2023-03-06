@@ -21,7 +21,7 @@
 
     protected override async Task HandleValueChanged(ChangeEventArgs eventArgs)
     {
-        var stringValue = eventArgs.Value?.ToString() ?? "";
+        var stringValue = eventArgs.Value?.ToString()?.Replace(',', '.') ?? "";
         var value = string.IsNullOrWhiteSpace(stringValue) ?
             decimal.Zero :
             decimal.Parse(stringValue, new NumberFormatInfo { CurrencyDecimalSeparator = "." });
