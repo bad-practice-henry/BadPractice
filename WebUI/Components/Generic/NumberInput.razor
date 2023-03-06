@@ -7,7 +7,9 @@
         type="number"
         value="@InputValue"
         id="@Id"
-        @oninput="HandleValueChanged"/>
+        @oninput="HandleValueChanged"
+        pattern="\d*"
+        inputmode="decimal"/>
 
     @if (!string.IsNullOrWhiteSpace(InputGroupText))
     {
