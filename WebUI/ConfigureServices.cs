@@ -26,6 +26,5 @@ public static class ConfigureServices
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
         }
-        
     }
 }

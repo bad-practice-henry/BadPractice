@@ -14,7 +14,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices();
+builder.Services.AddInfrastructureServices(builder.HostEnvironment.BaseAddress);
 await builder.Services.AddWebUIServices(builder);
 
 await builder.Build().RunAsync();

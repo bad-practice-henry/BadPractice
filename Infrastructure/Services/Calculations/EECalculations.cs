@@ -44,10 +44,11 @@ public static class EECalculations
             case <= 0:
                 return 0;
             case <= MinExceptionSalaryNet:
-                if (value <= TaxFreeMonthlyMax)
+                if (value <= TaxFreeMonthlyMax || !options.UseTaxFree)
                     return value / (1 -
                                     (options.UseUnemploymentInsuranceEmployee ? UnemploymentInsuranceEmployeePercent : 0) -
-                                    (options.UsePensionSecondPillar ? FundedPensionSecondPillarPercent : 0));
+                                    (options.UsePensionSecondPillar ? FundedPensionSecondPillarPercent : 0) -
+                                    (options.UseTaxFree ? 0 : IncomeTaxPercent));
 
                 return (value - 130.8m) / 0.7712m;
             case > MinExceptionSalaryNet and < MaxExceptionSalaryNet:

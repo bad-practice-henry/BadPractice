@@ -13,23 +13,21 @@ jobs:
     # use ubuntu-latest image to run steps on
     runs-on: ubuntu-latest
     steps:
-      # uses GitHub's checkout action to checkout code form the master branch
       - uses: actions/checkout@v2
-      
-      # sets up .NET SDK 7.0
-      - name: Setup latest .NET SDKs
-        uses: Elskom/setup-latest-dotnet@v1.1.2
+      - name: Setup latest .NET SDK
+        uses: actions/setup-dotnet@v1
         with:
-          VERSION_MAJOR: 7
-      # Install dotnet wasm buildtools workload
+          dotnet-version: 7.0.x
       - name: Install .NET WASM Build Tools
         run: dotnet workload install wasm-tools
-      
-      # publishes Blazor project to the release-folder
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
       - name: Publish .NET Project
         run: dotnet publish WebUI/WebUI.csproj -c:Release -p:GHPages=true -o dist/Web --nologo
 
-      # base href url value should be changed so that resources like CSS and scripts can load properly. 
+      # base href url value of index should be changed so that resources like CSS and scripts can load properly. 
       - name: Rewrite base href
         if: success()
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0
@@ -37,7 +35,7 @@ jobs:
           html_path: dist/Web/wwwroot/index.html
           base_href: '/'
       
-      # base href url value should be changed so that resources like CSS and scripts can load properly. 
+      # base href url value of 404 should be changed so static pages would redirect correctly 
       - name: Rewrite base href
         if: success()
         uses: SteveSandersonMS/ghaction-rewrite-base-href@v1.1.0

@@ -1,6 +1,5 @@
 ﻿@using WebUI.Resources.Pages
 @using WebUI.Models.SalaryCalculator
-@using System.Globalization
 @inject IStringLocalizer<SalaryCalculator> Localize;
 
 <table class="table table-sm table-hover">
@@ -15,7 +14,7 @@
     {
         <tr>
             <td class="fw-bolder">@Localize[dataItem.Key]</td>
-            <td class="text-right">@dataItem.Value.ToString("0.00")</td>
+            <td class="text-right">@dataItem.Value</td>
         </tr>
     }
     </tbody>

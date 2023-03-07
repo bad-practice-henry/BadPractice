@@ -1,8 +1,9 @@
 ﻿#region
 
-using System.Net.Http.Json;
 using Application.Constants;
+using Application.Extensions;
 using Application.SalaryCalculation;
+using Infrastructure.HttpClient;
 using Infrastructure.Interfaces;
 using Infrastructure.Services.Calculations;
 
@@ -12,11 +13,11 @@ namespace Infrastructure.Services;
 
 public class SalaryCalculationService : ISalaryCalculationService
 {
-    private readonly HttpClient _httpClient;
+    private readonly LocalDataHttpClient _localDataHttpClient;
 
-    public SalaryCalculationService(HttpClient httpClient)
+    public SalaryCalculationService(LocalDataHttpClient localDataHttpClient)
     {
-        _httpClient = httpClient;
+        _localDataHttpClient = localDataHttpClient;
     }
 
     public SalaryCalculationResult CalculateResult(SalaryCalculationBaseValues baseValues, SalaryCalculationOptions options)
@@ -31,7 +32,7 @@ public class SalaryCalculationService : ISalaryCalculationService
 
         result.Currency = GetCountryCurrency(baseValues.Country);
 
-        return result;
+        return result.RoundDecimalProperties();
     }
 
     public SalaryCalculationYearlyResult CalculateYearly(SalaryCalculationBaseValues baseValues, SalaryCalculationOptions options)
@@ -46,13 +47,14 @@ public class SalaryCalculationService : ISalaryCalculationService
 
         result.Currency = GetCountryCurrency(baseValues.Country);
 
-        return result;
+        return result.RoundDecimalProperties();
     }
 
     public async Task<int> GetWorkingHoursOfCurrentMonth(Country country)
     {
-        var result = await _httpClient.GetFromJsonAsync<int[]>($"data/WorkingHours.{country.ToString()}.json");
-        if (result is null) return 0;
+        var result = await _localDataHttpClient.GetWorkingHours(country);
+
+        if (result.Equals(Array.Empty<int>())) return 0;
 
         var currentMonth = DateTime.Now.Month;
         return result.Length < currentMonth ? 0 : result[currentMonth - 1];
