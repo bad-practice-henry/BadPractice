@@ -19,9 +19,13 @@ public static class ConfigureServices
         var appLanguage = await jsInterop.InvokeAsync<string>("appCulture.get");
         if (appLanguage != null)
         {
-            var cultureInfo = new CultureInfo(appLanguage);
+            var cultureInfo = new CultureInfo(appLanguage)
+            {
+                NumberFormat = new NumberFormatInfo { NumberDecimalSeparator = "." }
+            };
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
         }
+        
     }
 }

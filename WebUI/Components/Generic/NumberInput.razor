@@ -8,8 +8,8 @@
         value="@InputValue"
         id="@Id"
         @oninput="HandleValueChanged"
-        pattern="\d*"
-        inputmode="decimal"/>
+        pattern="[0-9]*[.][0-9]*"
+        inputmode="numeric"/>
 
     @if (!string.IsNullOrWhiteSpace(InputGroupText))
     {
@@ -21,10 +21,10 @@
 
     protected override async Task HandleValueChanged(ChangeEventArgs eventArgs)
     {
-        var stringValue = eventArgs.Value?.ToString()?.Replace(',', '.') ?? "";
+        var stringValue = eventArgs.Value?.ToString() ?? "";
         var value = string.IsNullOrWhiteSpace(stringValue) ?
             decimal.Zero :
-            decimal.Parse(stringValue, new NumberFormatInfo { CurrencyDecimalSeparator = "." });
+            decimal.Parse(stringValue);
         InputValue = value;
         await ValueChanged.InvokeAsync(InputValue);
     }
