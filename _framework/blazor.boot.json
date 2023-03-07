@@ -8,7 +8,7 @@
   "resources": {
     "assembly": {
       "Application.dll": "sha256-FX71jx1M3Aj8W26wk9fhgri2+AYmu58UnaLzfdhYixc=",
-      "Infrastructure.dll": "sha256-WFJaha5+OkRMKhP+zwERsGooCpCeyDJjVZQPXetWaq8=",
+      "Infrastructure.dll": "sha256-vRY9JyCUDGskkm1xia+TGsLysHXxPGkZcCb6HI+TquM=",
       "Mapster.Core.dll": "sha256-t4scC57orK9Pzk+stzDyapVp1P7RjVmaEkumPBlVL5c=",
       "Mapster.DependencyInjection.dll": "sha256-4Q+L3sqsvy3GCbflPXnTd2zW1kytbicsU+7xQny8YrE=",
       "Mapster.dll": "sha256-ru7A\/3AB6xrsWcoz+YngxJVJl5vCMYweQzhp7gIfuqA=",
