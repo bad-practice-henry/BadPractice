@@ -100,7 +100,7 @@ public static class EECalculations
         if (!salaryCalculationOptions.UseTaxFree)
         {
             taxFree = 0;
-            return value * IncomeTaxPercent;
+            return (value - pensionSecondPillar - unemploymentInsuranceEmployee) * IncomeTaxPercent;
         }
 
         if (value - TaxFreeMonthlyMax - pensionSecondPillar - unemploymentInsuranceEmployee <= 0)
