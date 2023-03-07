@@ -20,6 +20,8 @@ jobs:
           dotnet-version: 7.0.x
       - name: Install .NET WASM Build Tools
         run: dotnet workload install wasm-tools
+      - name: Install dependencies
+        run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
       - name: Test
